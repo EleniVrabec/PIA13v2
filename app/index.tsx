@@ -5,6 +5,10 @@ export default function Index() {
   const [count, setCount] = useState(0);
   const increment = () => setCount(prevCount => prevCount + 1);
   const decrement = () => setCount(prevCount => (prevCount > 0 ? prevCount - 1 : 0 ))
+  const reset = () => {
+    setCount(0);
+  }
+  
   return (
     <SafeAreaView style={styles.safeArea}>
     <View
@@ -32,6 +36,13 @@ export default function Index() {
       </TouchableOpacity>
 
       </View>
+      {count > 0 && (
+          <View style={styles.resetContainer}>
+            <TouchableOpacity onPress={reset} style={styles.resetButton}>
+              <Text style={styles.buttonText}>RESET</Text>
+            </TouchableOpacity>
+          </View>
+        )}
       
     </View>
     </SafeAreaView>
@@ -49,7 +60,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
   },
   numberContainer: {
-    flex: 2, 
+    flex: 1, 
     justifyContent: "center", 
     alignItems: "center", 
   },
@@ -72,6 +83,20 @@ const styles = StyleSheet.create({
     margin: 5,
     borderRadius: 5,
     width:100
+  },
+  resetContainer: {
+    marginTop: 20,
+    justifyContent: "center",
+    alignItems: "center",
+    width: "80%",
+  },
+  resetButton: {
+    backgroundColor: "red",
+    padding: 20,
+    margin: 5,
+    borderRadius: 5,
+    width: 150,
+    alignItems: "center",
   },
   buttonText: {
     fontSize: 24,
